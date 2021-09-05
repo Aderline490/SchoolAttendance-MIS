@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use DateTime;
 use App\Teacher;
 use App\Latetime;
-use App\Attendance;
+use App\TeacherAttendance;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\AttendanceEmp;
 
@@ -19,7 +19,7 @@ class TeacherAttendanceController extends Controller
      */
     public function index()
     {
-        return view('admin.teacher_attendance')->with(['attendances'=> Attendance::all()]);
+        return view('admin.teacher_attendance')->with(['attendances'=> TeacherAttendance::all()]);
     }
 
     /**
