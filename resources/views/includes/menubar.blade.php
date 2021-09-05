@@ -21,16 +21,16 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-child" aria-hidden="true"></i>
                     <span>Students</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/students"><i class="fa fa-circle-o"></i>Students List</a></li>
-                    <li><a href="/sattendance"><i class="fa fa-calendar"></i> <span>Attendance</span></a></li>
-                    <li><a href="/sleave"><i class="fa fa-calendar"></i> <span>On Leave</span></a></li>
+                    <li><a href="/students"><i class="fa fa-list" aria-hidden="true"></i>Students List</a></li>
+                    <li><a href="/sattendance"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> <span>Attendance</span></a></li>
+                    <li><a href="/sleave"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> <span>On Leave</span></a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -42,8 +42,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/teachers"><i class="fa fa-circle-o"></i> Teachers List</a></li>
-                    <li><a href="/tattendance"><i class="fa fa-calendar"></i> <span>Attendance</span></a></li>
+                    <li><a href="/teachers"><i class="fa fa-list" aria-hidden="true"></i>Teachers List</a></li>
+                    <li><a href="/tattendance"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> <span>Attendance</span></a></li>
+                    <li><a href="/tleave"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> <span>On Leave</span></a></li>
                 </ul>
             </li>
 

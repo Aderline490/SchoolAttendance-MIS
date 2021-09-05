@@ -20,20 +20,8 @@ class StudentAttendanceController extends Controller
      */
     public function index()
     {
-        return view('admin.student_attendance')->with(['student_attendances'=> StudentAttendance::all()]);
+        return view('admin.student_attendance')->with(['student_attendances'=> StudentAttendance::all(), 'schedules'=>Schedule::all()]);
     }
-
-    /**
-     * Display a listing of the latetime.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexLatetime()
-    {
-        return view('admin.latetime')->with(['latetimes' => StudentLatetime::all()]);
-    }
-
-
 
     /**
      * assign attendance to student.
@@ -51,15 +39,14 @@ class StudentAttendanceController extends Controller
                         $student_attendance->student_id = $student->id;
                         $student_attendance->attendance_time = date("H:i:s");
                         $student_attendance->attendance_date = date("Y-m-d");
-                        $schedules = Schedule::all();
-                        if (!($schedules->first()->time_in >= $student_attendance->attendance_time)){
+                        if (!($student->schedules->first()->time_in >= $student_attendance->attendance_time)){
                             $student_attendance->status = 0;
                             StudentAttendanceController::lateTime($student);
                         };
                         $student_attendance->save();
 
                     }else{
-                        return redirect()->back()->with('error', 'Your attendance has been assigned!');
+                        return redirect()->back()->with('error', 'The attendance has been assigned!');
                     }
                 }
                 return redirect()->route('sattendance')->with('success', 'Successful in assign the attendance');

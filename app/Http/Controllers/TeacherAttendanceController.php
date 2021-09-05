@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use App\Teacher;
-use App\Latetime;
-use App\Attendance;
+use App\Schedule;
+use App\TeacherLatetime;
+use App\TeacherAttendance;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\AttendanceEmp;
+use App\Http\Requests\AttendanceTeach;
 
 
 class TeacherAttendanceController extends Controller
@@ -19,19 +20,8 @@ class TeacherAttendanceController extends Controller
      */
     public function index()
     {
-        return view('admin.teacher_attendance')->with(['attendances'=> Attendance::all()]);
+        return view('admin.teacher_attendance')->with(['teacher_attendances'=> TeacherAttendance::all()]);
     }
-
-    /**
-     * Display a listing of the latetime.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexLatetime()
-    {
-        return view('admin.latetime')->with(['latetimes' => Latetime::all()]);
-    }
-
 
 
     /**
@@ -40,36 +30,30 @@ class TeacherAttendanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function assign(AttendanceEmp $request)
+    public function assign(AttendanceTeach $request)
     {
         $request->validated();
 
-        if ($employee = User::whereEmail(request('email'))->first()){
+        if ($teacher = Teacher::whereId(request('id'))->first()){
 
-            if (Hash::check($request->pin_code, $employee->pin_code)) {
-                    if (!Attendance::whereAttendance_date(date("Y-m-d"))->whereUser_id($employee->id)->first()){
-                        $attendance = new Attendance;
-                        $attendance->user_id = $employee->id;
-                        $attendance->attendance_time = date("H:i:s");
-                        $attendance->attendance_date = date("Y-m-d");
+                    if (!TeacherAttendance::whereAttendance_date(date("Y-m-d"))->whereTeacher_id($employee->id)->first()){
+                        $teacher_attendance = new Attendance;
+                        $teacher_attendance->teacher_id = $teacher->id;
+                        $teacher_attendance->attendance_time = date("H:i:s");
+                        $teacher_attendance->attendance_date = date("Y-m-d");
 
-                        if (!($employee->schedules->first()->time_in >= $attendance->attendance_time)){
+                        $schedules = Schedule::all();
+                        if (!($schedules->first()->time_in >= $teacher_attendance->attendance_time)){
                             $attendance->status = 0;
-                        AttendanceController::lateTime($employee);
+                        TeacherAttendanceController::lateTime($teacher);
                         };
-                        $attendance->save();
+                        $teacher_attendance->save();
 
                     }else{
-                        return redirect()->route('attendance.login')->with('error', 'you assigned your attendance before');
+                        return redirect()->back()->with('error', 'The attendance has been assigned! ');
                     }
-                } else {
-                return redirect()->route('attendance.login')->with('error', 'Failed to assign the attendance');
-            }
         }
-
-
-
-        return redirect()->route('home')->with('success', 'Successful in assign the attendance');
+        return redirect()->route('tattendance')->with('success', 'Successful in assign the attendance');
     }
 
     /**
@@ -77,15 +61,16 @@ class TeacherAttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public static function lateTime(User $employee)
+    public static function lateTime(Teacher $teacher)
     {
+        $schedules = Schedules::all();
         $current_t= new DateTime(date("H:i:s"));
-        $start_t= new DateTime($employee->schedules->first()->time_in);
+        $start_t= new DateTime($schedules->first()->time_in);
         $difference = $start_t->diff($current_t)->format('%H:%I:%S');
 
 
-        $latetime = new Latetime;
-        $latetime->user_id = $employee->id;
+        $latetime = new TeacherLatetime;
+        $latetime->teacher_id = $teacher->id;
         $latetime->duration   = $difference;
         $latetime->latetime_date  = date("Y-m-d");
         $latetime->save();

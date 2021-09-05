@@ -24,12 +24,12 @@ class TeacherRec extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3|max:64|alpha_dash',
-            'gender' => 'required|string|min:4|max:6|alpha_dash',
-            'address' => 'required|string|min:1|alpha_dash',
-            'dob' => 'required|date|min:4|alpha_dash',
-            'phone' => 'integer|min:10|alpha_dash',
-            'email' => 'email|min:1|alpha_dash',
+            'name' => 'required|string|min:3|max:64',
+            'gender' => 'required|string|min:4|max:6',
+            'address' => 'required|string|min:1',
+            'dob' => 'required|date|min:4',
+            'phone' => 'required|regex:/(07)[0-9]{8}/|unique:teachers,phone|min:10',
+            'email' => 'required|email|unique:teachers,email|min:1',
         ];
     }
 }

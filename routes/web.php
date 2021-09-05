@@ -24,7 +24,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/students', 'StudentController');
 
     Route::get('/sattendance', 'StudentAttendanceController@index')->name('sattendance');
-    Route::get('/latetime', 'AttendanceController@indexLatetime')->name('indexLatetime');
     Route::get('/sleave', 'StudentLeaveController@index')->name('sleave');
 
 });
@@ -33,8 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/teachers', 'TeacherController');
     
     Route::get('/tattendance', 'TeacherAttendanceController@index')->name('tattendance');
-    Route::get('/latetime', 'AttendanceController@indexLatetime')->name('indexLatetime');
-    Route::get('/leave', 'LeaveController@index')->name('leave');
+    Route::get('/tleave', 'TeacherLeaveController@index')->name('tleave');
 
 });
 
@@ -47,10 +45,17 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::get('/sattendance/assign', function () {
     return view('includes.add_student_attendance');
-})->name('attendance.login');
+})->name('sattendance.login');
 
 
 Route::post('/sattendance/assign', 'StudentAttendanceController@assign')->name('sattendance.assign');
+
+Route::get('/tattendance/assign', function () {
+    return view('includes.add_teacher_attendance');
+})->name('tattendance.login');
+
+
+Route::post('/tattendance/assign', 'TeacherAttendanceController@assign')->name('tattendance.assign');
 
 
 Route::get('/sleave/assign', function () {

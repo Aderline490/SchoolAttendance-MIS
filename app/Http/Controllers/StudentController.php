@@ -38,6 +38,13 @@ class StudentController extends Controller
         $student->phone = $request->phone;
         $student->email = $request->email;
         $student->save();
+        
+        if($request->schedule){
+
+            $schedule = Schedule::whereSlug($request->schedule)->first();
+
+            $employee->schedules()->attach($schedule);
+        }
         return redirect()->route('students.index')->with('success', 'Student Has Been Registered Successfully');
     }
 
@@ -60,7 +67,16 @@ class StudentController extends Controller
         $student->dob = $request->dob;
         $student->phone = $request->phone;
         $student->email = $request->email;
-        $employee->save();
+        $student->save();
+        
+        if ($request->schedule) {
+
+            $employee->schedules()->detach();
+
+            $schedule = Schedule::whereSlug($request->schedule)->first();
+
+            $employee->schedules()->attach($schedule);
+        }
         
         return redirect()->route('students.index')->with('success', 'Student Has Been Updated Successfully');
     }

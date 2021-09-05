@@ -23,7 +23,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> New</a>
+                        <a href="#addnewstudent" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> New</a>
                     </div>
                     <div class="box-body">
                         <table id="example1" class="table table-bordered">
@@ -51,8 +51,8 @@
                                     <td>{{$student->phone}}</td>
                                     <td>{{$student->email}}</td>
                                     <td>
-                                        <a href="#edit{{$student->name}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
-                                        <a href="#delete{{$student->name}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
+                                        <a href="#editstudent" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
+                                        <a href="#deletestudent" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
                                     </td>
                                 </tr>
 

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Role;
+use App\Teacher;
 use App\Schedule;
-use App\Http\Requests\EmployeeRec;
+use App\Http\Requests\TeacherRec;
 
 class TeacherController extends Controller
 {
@@ -16,7 +15,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        return view('admin.employee')->with(['employees'=> User::all(), 'schedules'=>Schedule::all()]);
+        return view('admin.teacher')->with(['teachers'=> Teacher::all(), 'schedules'=>Schedule::all()]);
     }
 
     /**
@@ -25,16 +24,18 @@ class TeacherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EmployeeRec $request)
+    public function store(TeacherRec $request)
     {
         $request->validated();
 
-        $employee = new User;
-        $employee->name = $request->name;
-        $employee->email = $request->email;
-        $employee->password = bcrypt($request->password);
-        $employee->pin_code = bcrypt($request->pin_code);
-        $employee->save();
+        $teacher = new Teacher;
+        $teacher->name = $request->name;
+        $teacher->gender = $request->gender;
+        $teacher->address = $request->address;
+        $teacher->dob = $request->dob;
+        $teacher->phone = $request->phone;
+        $teacher->email = $request->email;
+        $teacher->save();
 
         if($request->schedule){
 
@@ -42,14 +43,7 @@ class TeacherController extends Controller
 
             $employee->schedules()->attach($schedule);
         }
-
-        $role = Role::whereSlug('emp')->first();
-
-        $employee->roles()->attach($role);
-
-
-
-        return redirect()->route('employees.index')->with('success', 'Employee Has Been Created Successfully');
+        return redirect()->route('teachers.index')->with('success', 'Teacher Has Been Created Successfully');
     }
 
     /**
@@ -59,15 +53,17 @@ class TeacherController extends Controller
      * @param   \App\User  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(EmployeeRec $request, User $employee)
+    public function update(TeacherRec $request, Teacher $teacher)
     {
         $request->validated();
 
-        $employee->name = $request->name;
-        $employee->email = $request->email;
-        $employee->password = bcrypt($request->password);
-        $employee->pin_code = bcrypt($request->pin_code);
-        $employee->save();
+        $teacher->name = $request->name;
+        $teacher->gender = $request->gender;    
+        $teacher->address = $request->address;
+        $teacher->dob = $request->dob;
+        $teacher->phone = $request->phone;
+        $teacher->email = $request->email;
+        $teacher->save();
 
         if ($request->schedule) {
 
@@ -77,10 +73,7 @@ class TeacherController extends Controller
 
             $employee->schedules()->attach($schedule);
         }
-
-
-
-        return redirect()->route('employees.index')->with('success', 'Employee Has Been Updated Successfully');
+        return redirect()->route('teachers.index')->with('success', 'Teacher Has Been Updated Successfully');
     }
 
     /**
@@ -89,9 +82,9 @@ class TeacherController extends Controller
      * @param   \App\User  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $employee)
+    public function destroy(Teacher $teacher)
     {
-        $employee->delete();
-        return redirect()->route('employees.index')->with('success', 'Employee Has Been Deleted Successfully');
+        $teacher->delete();
+        return redirect()->route('teachers.index')->with('success', 'Teacher Has Been Deleted Successfully');
     }
 }
