@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TeacherAttendance extends Model
 {
-    public $timestamp = false;
+    public $timestamps = false;
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);

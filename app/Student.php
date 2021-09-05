@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Student extends Authenticatable
 {
     use Notifiable;
-    public $timestamp = false;
+    public $timestamps = false;
 
     public function getRouteKeyName()
     {

@@ -30,6 +30,7 @@
                 <ul class="treeview-menu">
                     <li><a href="/students"><i class="fa fa-circle-o"></i>Students List</a></li>
                     <li><a href="/sattendance"><i class="fa fa-calendar"></i> <span>Attendance</span></a></li>
+                    <li><a href="/sleave"><i class="fa fa-calendar"></i> <span>On Leave</span></a></li>
                 </ul>
             </li>
             <li class="treeview">

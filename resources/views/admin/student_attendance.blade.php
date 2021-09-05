@@ -28,15 +28,19 @@
                             <thead>
                                 <th>Date</th>
                                 <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Class</th>
+                                <th>Section</th>
                                 <th>Attendance</th>
-                                <th>Time In</th>
                             </thead>
                             <tbody>
                                 @foreach( $student_attendances as $student_attendance)
-
                                 <tr>
                                     <td>{{$student_attendance->attendance_date}}</td>
                                     <td>{{$student_attendance->student_id}}</td>
+                                    <td>{{$student_attendance->student->name}}</td>
+                                    <td>{{$student_attendance->student->class}}</td>
+                                    <td>{{$student_attendance->student->section}}</td>
                                     <td>{{$student_attendance->attendance_time}}
                                         @if( $student_attendance->status == 1 )
                                         <span class="label label-warning pull-right">On Time</span>
@@ -44,7 +48,6 @@
                                         <span class="label label-danger pull-right">Late</span>
                                         @endif
                                     </td>
-                                    <td>{{$student_attendance->student->schedules->first()->time_in}} </td>
                                 </tr>
 
                                 @endforeach

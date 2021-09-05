@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label for="gender" class="col-sm-3 control-label">Gender</label>
                         <div class="col-sm-9">
-                            <select class="form-control @error('gender') is-invalid @enderror" value="{{ old('address') }}" id="gender" name="gender" required>
+                            <select class="form-control @error('gender') is-invalid @enderror" value="{{ old('gender') }}" id="gender" name="gender" required>
                                 <option value="" selected>- Select -</option>
                                 <option value="female">Female</option>
                                 <option value="male">Male</option>

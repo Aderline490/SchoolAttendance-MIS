@@ -1,14 +1,14 @@
 <!-- Add -->
-<div class="modal fade" id="addstudentattendance">
+<div class="modal fade" id="addstudentleave">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><b>Add Student Attendance</b></h4>
+                <h4 class="modal-title"><b>Add Student Leave</b></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('sattendance.assign') }}">
+                <form class="form-horizontal" method="POST" action="{{ route('sleave.assign') }}">
                     @csrf
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Name</label>
@@ -23,6 +23,24 @@
                         <div class="col-sm-9">
                             <div class="date">
                                 <input type="number" class="form-control" id="id" name="id" value="{{ old('id') }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="leave_date" class="col-sm-3 control-label">Leave Date</label>
+
+                        <div class="col-sm-9">
+                            <div class="date">
+                                <input type="date" class="form-control" id="leave_date" name="leave_date" value="{{ old('leave_date') }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="return_date" class="col-sm-3 control-label">Return Date</label>
+
+                        <div class="col-sm-9">
+                            <div class="date">
+                                <input type="date" class="form-control" id="return_date" name="return_date" value="{{ old('return_date') }}">
                             </div>
                         </div>
                     </div>

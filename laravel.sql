@@ -117,7 +117,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +126,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_12_02_141403_create_roles_table',1),(5,'2019_12_03_045452_create_attendances_table',3),(6,'2019_12_03_045912_create_latetimes_table',4),(7,'2019_12_03_045930_create_overtimes_table',4),(8,'2019_12_03_050030_create_leaves_table',4),(9,'2019_12_22_183558_create_checks_table',5),(10,'2021_09_03_191621_create_teachers',6),(11,'2021_09_03_192248_create_students',6),(12,'2021_09_03_192830_create_teacher_attendance',6),(13,'2021_09_03_192938_create_student_attendance',6),(17,'2021_09_04_095028_create_schedule_students_table',7),(18,'2021_09_04_095111_create_schedule_teachers_table',8),(22,'2021_09_04_075325_create_student_latetimes_table',9),(23,'2019_12_03_044741_create_schedules_table',10),(24,'2021_09_04_101313_create_schedule_students_table',11),(25,'2021_09_04_101324_create_schedule_teachers_table',11);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_12_02_141403_create_roles_table',1),(5,'2019_12_03_045452_create_attendances_table',3),(6,'2019_12_03_045912_create_latetimes_table',4),(7,'2019_12_03_045930_create_overtimes_table',4),(8,'2019_12_03_050030_create_leaves_table',4),(9,'2019_12_22_183558_create_checks_table',5),(10,'2021_09_03_191621_create_teachers',6),(11,'2021_09_03_192248_create_students',6),(12,'2021_09_03_192830_create_teacher_attendance',6),(13,'2021_09_03_192938_create_student_attendance',6),(17,'2021_09_04_095028_create_schedule_students_table',7),(18,'2021_09_04_095111_create_schedule_teachers_table',8),(22,'2021_09_04_075325_create_student_latetimes_table',9),(23,'2019_12_03_044741_create_schedules_table',10),(24,'2021_09_04_101313_create_schedule_students_table',11),(25,'2021_09_04_101324_create_schedule_teachers_table',11),(26,'2021_09_05_123651_create_student_leave_table',12),(28,'2021_09_05_133749_create_student_leave_table',13),(29,'2021_09_05_133800_create_teacher_leave_table',13),(30,'2021_09_05_135113_create_student_leave_table',14),(31,'2021_09_05_135121_create_teacher_leave_table',14);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,7 +314,7 @@ CREATE TABLE `schedules` (
 
 LOCK TABLES `schedules` WRITE;
 /*!40000 ALTER TABLE `schedules` DISABLE KEYS */;
-INSERT INTO `schedules` VALUES (6,'First','09:00:00');
+INSERT INTO `schedules` VALUES (6,'First','15:00:00');
 /*!40000 ALTER TABLE `schedules` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -334,7 +334,7 @@ CREATE TABLE `student_attendances` (
   PRIMARY KEY (`id`),
   KEY `student_attendance_student_id_foreign` (`student_id`),
   CONSTRAINT `student_attendance_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -343,7 +343,7 @@ CREATE TABLE `student_attendances` (
 
 LOCK TABLES `student_attendances` WRITE;
 /*!40000 ALTER TABLE `student_attendances` DISABLE KEYS */;
-INSERT INTO `student_attendances` VALUES (1,1,'10:19:22','2021-09-04',0);
+INSERT INTO `student_attendances` VALUES (1,1,'10:19:22','2021-09-04',0),(2,2,'11:25:31','2021-09-05',0),(3,3,'11:40:44','2021-09-05',0),(4,4,'11:46:32','2021-09-05',0),(5,5,'12:18:30','2021-09-05',0),(6,6,'12:20:49','2021-09-05',1);
 /*!40000 ALTER TABLE `student_attendances` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -362,7 +362,7 @@ CREATE TABLE `student_latetimes` (
   PRIMARY KEY (`id`),
   KEY `student_latetimes_student_id_foreign` (`student_id`),
   CONSTRAINT `student_latetimes_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -371,8 +371,36 @@ CREATE TABLE `student_latetimes` (
 
 LOCK TABLES `student_latetimes` WRITE;
 /*!40000 ALTER TABLE `student_latetimes` DISABLE KEYS */;
-INSERT INTO `student_latetimes` VALUES (1,1,'00:00:00','2021-09-04');
+INSERT INTO `student_latetimes` VALUES (1,1,'00:00:00','2021-09-04'),(2,2,'02:25:17','2021-09-05'),(3,2,'02:25:31','2021-09-05'),(4,3,'02:40:44','2021-09-05'),(5,4,'02:46:32','2021-09-05'),(6,5,'09:18:30','2021-09-05');
 /*!40000 ALTER TABLE `student_latetimes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `student_leaves`
+--
+
+DROP TABLE IF EXISTS `student_leaves`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `student_leaves` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `student_id` int(10) unsigned NOT NULL,
+  `leave_date` date NOT NULL,
+  `return_date` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `student_leaves_student_id_foreign` (`student_id`),
+  CONSTRAINT `student_leaves_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `student_leaves`
+--
+
+LOCK TABLES `student_leaves` WRITE;
+/*!40000 ALTER TABLE `student_leaves` DISABLE KEYS */;
+INSERT INTO `student_leaves` VALUES (1,2,'2021-09-22','2021-09-24');
+/*!40000 ALTER TABLE `student_leaves` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -396,7 +424,7 @@ CREATE TABLE `students` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `students_phone_unique` (`phone`),
   UNIQUE KEY `students_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -405,7 +433,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'Adeline Gashugi','female',3,'C','Kimironko-Bibare','2021-09-18','0788695515','aderlinecarmella@gmail.com',NULL),(2,'naillah','female',4,'MPC','Bumbogo','2021-09-17','0780123501','mugishaelviso@yahoo.com',NULL);
+INSERT INTO `students` VALUES (1,'Adeline Gashugi','female',3,'C','Kimironko-Bibare','2021-09-18','0788695515','aderlinecarmella@gmail.com',NULL),(2,'naillah','female',4,'MPC','Bumbogo','2021-09-17','0780123501','mugishaelviso@yahoo.com',NULL),(3,'Uganda','male',5,'PCB','Remera','2021-09-22','0780498807','lili@gmail.com',NULL),(4,'Aderline Shughs','female',3,'C','Kigali','2021-09-23','0734567829','ad@gmail.com',NULL),(5,'Kweti','male',6,'ICT','Musanze','2021-09-23','0712345678','baselrabia2008@gmail.com',NULL),(6,'Elvi','male',6,'Net','Kimironko-Bibare','2021-09-24','0780123511','ah@gmail.com',NULL);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -437,6 +465,33 @@ CREATE TABLE `teacher_attendances` (
 LOCK TABLES `teacher_attendances` WRITE;
 /*!40000 ALTER TABLE `teacher_attendances` DISABLE KEYS */;
 /*!40000 ALTER TABLE `teacher_attendances` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `teacher_leaves`
+--
+
+DROP TABLE IF EXISTS `teacher_leaves`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `teacher_leaves` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `teacher_id` int(10) unsigned NOT NULL,
+  `leave_date` date NOT NULL,
+  `return_date` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `teacher_leaves_teacher_id_foreign` (`teacher_id`),
+  CONSTRAINT `teacher_leaves_teacher_id_foreign` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `teacher_leaves`
+--
+
+LOCK TABLES `teacher_leaves` WRITE;
+/*!40000 ALTER TABLE `teacher_leaves` DISABLE KEYS */;
+/*!40000 ALTER TABLE `teacher_leaves` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -512,4 +567,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-04 15:27:12
+-- Dump completed on 2021-09-05 16:06:19

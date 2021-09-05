@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use App\Student;
+use App\Schedule;
 use App\StudentLatetime;
 use App\StudentAttendance;
 use Illuminate\Support\Facades\Hash;
@@ -50,18 +51,18 @@ class StudentAttendanceController extends Controller
                         $student_attendance->student_id = $student->id;
                         $student_attendance->attendance_time = date("H:i:s");
                         $student_attendance->attendance_date = date("Y-m-d");
-
-                        if (!($student->schedules->first()->time_in >= $student_attendance->attendance_time)){
+                        $schedules = Schedule::all();
+                        if (!($schedules->first()->time_in >= $student_attendance->attendance_time)){
                             $student_attendance->status = 0;
                             StudentAttendanceController::lateTime($student);
                         };
                         $student_attendance->save();
 
                     }else{
-                        return redirect()->route('attendance.login')->with('error', 'you assigned your attendance before');
+                        return redirect()->back()->with('error', 'Your attendance has been assigned!');
                     }
-        }
-        return redirect()->route('attendance')->with(['student_attendances'=>$student_attendances]);
+                }
+                return redirect()->route('sattendance')->with('success', 'Successful in assign the attendance');
     }
 
     /**
@@ -71,11 +72,12 @@ class StudentAttendanceController extends Controller
      */
     public static function lateTime(Student $student)
     {
+        $schedules = Schedule::all();
         $current_t= new DateTime(date("H:i:s"));
-        $start_t= new DateTime($student->schedules->first()->time_in);
+        $start_t= new DateTime($schedules->first()->time_in);
         $difference = $start_t->diff($current_t)->format('%H:%I:%S');
-
-
+        
+        
         $latetime = new StudentLatetime;
         $latetime->student_id = $student->id;
         $latetime->duration   = $difference;
