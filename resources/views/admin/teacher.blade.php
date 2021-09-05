@@ -7,12 +7,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Employee List
+            teacher List
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li>Employees</li>
-            <li class="active">Employee List</li>
+            <li>teachers</li>
+            <li class="active">teacher List</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -28,7 +28,7 @@
                     <div class="box-body">
                         <table id="example1" class="table table-bordered">
                             <thead>
-                                <th>Employee ID</th>
+                                <th>teacher ID</th>
                                 <th>Name</th>
                                 <th>E-mail</th>
                                 <th>Schedule</th>
@@ -36,22 +36,22 @@
                                 <th>Tools</th>
                             </thead>
                             <tbody>
-                                @foreach( $employees as $employee)
+                                @foreach( $teachers as $teacher)
 
                                 <tr>
-                                    <td>{{$employee->id}}</td>
-                                    <td>{{$employee->name}}</td>
-                                    <td>{{$employee->email}}</td>
+                                    <td>{{$teacher->id}}</td>
+                                    <td>{{$teacher->name}}</td>
+                                    <td>{{$teacher->email}}</td>
                                     <td>
-                                        @if(isset($employee->schedules->first()->slug))
-                                        {{$employee->schedules->first()->slug}}
+                                        @if(isset($teacher->schedules->first()->slug))
+                                        {{$teacher->schedules->first()->slug}}
                                         @endif
                                     </td>
-                                    <td>{{$employee->created_at}}</td>
+                                    <td>{{$teacher->created_at}}</td>
                                     <td>
 
-                                        <a href="#edit{{$employee->name}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
-                                        <a href="#delete{{$employee->name}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
+                                        <a href="#edit{{$teacher->name}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
+                                        <a href="#delete{{$teacher->name}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
                                     </td>
                                 </tr>
 
@@ -65,10 +65,10 @@
         </div>
     </section>
 </div>
-@foreach( $employees as $employee)
-@include('includes.edit_delete_employee')
+@foreach( $teachers as $teacher)
+@include('includes.edit_delete_teacher')
 @endforeach
 
-@include('includes.add_employee')
+@include('includes.add_student')
 
 @endsection
