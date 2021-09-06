@@ -50,7 +50,7 @@ class TeacherController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param   \App\User  $employee
+     * @param   \App\User  $teacher
      * @return \Illuminate\Http\Response
      */
     public function update(TeacherRec $request, Teacher $teacher)
@@ -68,7 +68,7 @@ class TeacherController extends Controller
 
         if ($request->schedule) {
 
-            $employee->schedules()->detach();
+            $teacher->schedules()->detach();
 
             $schedule = Schedule::whereSlug($request->schedule)->first();
 
@@ -80,7 +80,7 @@ class TeacherController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param   \App\User  $employee
+     * @param   \App\User  $teacher
      * @return \Illuminate\Http\Response
      */
     public function destroy(Teacher $teacher)
