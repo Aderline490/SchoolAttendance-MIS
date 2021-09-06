@@ -20,7 +20,7 @@ class TeacherAttendanceController extends Controller
      */
     public function index()
     {
-        return view('admin.teacher_attendance')->with(['teacher_attendances'=> TeacherAttendance::all()]);
+        return view('admin.teacher_attendance')->with(['teacher_attendances'=> TeacherAttendance::all(), 'schedules' => Schedule::all()]);
     }
 
 
@@ -36,24 +36,29 @@ class TeacherAttendanceController extends Controller
 
         if ($teacher = Teacher::whereId(request('id'))->first()){
 
-                    if (!TeacherAttendance::whereAttendance_date(date("Y-m-d"))->whereTeacher_id($employee->id)->first()){
-                        $teacher_attendance = new Attendance;
+                    if (!TeacherAttendance::whereAttendance_date(date("Y-m-d"))->whereTeacher_id($teacher->id)->first()){
+                        $teacher_attendance = new TeacherAttendance;
                         $teacher_attendance->teacher_id = $teacher->id;
                         $teacher_attendance->attendance_time = date("H:i:s");
                         $teacher_attendance->attendance_date = date("Y-m-d");
 
                         $schedules = Schedule::all();
-                        if (!($schedules->first()->time_in >= $teacher_attendance->attendance_time)){
+                        if (!($teacher->schedules->first()->time_in >= $teacher_attendance->attendance_time)){
                             $attendance->status = 0;
                         TeacherAttendanceController::lateTime($teacher);
-                        };
+                        }elseif($teacher->schedules->first()->time_in >= $teacher_attendance->attendance_time){
+                            $teacher_attendance->status = 1;
+                        }else{
+                            $teacher_attendance->status = 2;
+                        };;
                         $teacher_attendance->save();
 
+                    return redirect()->route('tattendance')->with('success', 'Successful in assigning the attendance');
                     }else{
                         return redirect()->back()->with('error', 'The attendance has been assigned! ');
                     }
         }
-        return redirect()->route('tattendance')->with('success', 'Successful in assign the attendance');
+        return redirect()->route('tattendance')->with('error', 'Teacher with such id doesn\'t exist');
     }
 
     /**

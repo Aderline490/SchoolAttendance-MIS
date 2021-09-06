@@ -43,11 +43,17 @@
                                     <td>{{$student_attendance->student->section}}</td>
                                     <td>{{$student_attendance->attendance_time}}
                                         @if( $student_attendance->status == 1 )
-                                        <span class="label label-warning pull-right">On Time</span>
-                                        @else
+                                        <span class="label label-success pull-right">On Time</span>
+                                        @elseif( $student_attendance->status == 0 )
                                         <span class="label label-danger pull-right">Late</span>
+                                        @else
+                                        <span class="label label-warning pull-right">Absent</span>
                                         @endif
                                     </td>
+                                    <td>
+                                            <a href="#editstudentatt" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
+                                            <a href="#deletestudentatt" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
+                                        </td>
                                 </tr>
 
                                 @endforeach

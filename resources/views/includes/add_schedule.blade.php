@@ -28,15 +28,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="time_out" class="col-sm-3 control-label">Time Out</label>
-
-                        <div class="col-sm-9">
-                            <div class="bootstrap-timepicker">
-                                <input type="time" class="form-control timepicker" id="time_out" name="time_out" required>
-                            </div>
-                        </div>
-                    </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>

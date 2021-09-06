@@ -27,9 +27,9 @@ class Teacher extends Authenticatable
     {
         return $this->hasMany(Leave::class);
     }
-    public function overtime()
+    public function schedules()
     {
-        return $this->hasMany(Overtime::class);
+        return $this->belongsToMany('App\Schedule', 'schedule_teachers', 'teacher_id', 'schedule_id');
     }
     /**
      * The attributes that are mass assignable.

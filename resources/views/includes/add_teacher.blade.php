@@ -82,6 +82,18 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="schedule" class="col-sm-3 control-label">Schedule</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="schedule" name="schedule" required>
+                                <option value="" selected>- Select -</option>
+                                @foreach($schedules as $schedule)
+                                <option value="{{$schedule->slug}}">{{$schedule->slug}} : {{$schedule->time_in}}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                    </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>

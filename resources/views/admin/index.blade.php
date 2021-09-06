@@ -56,7 +56,7 @@
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
                     </div>
-                    <a href="/students/attendance" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/sattendance" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
                 <div class="small-box bg-olive">
                     <div class="inner">
@@ -68,7 +68,7 @@
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
                     </div>
-                    <a href="/teachers/attendance" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/tattendance" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -82,7 +82,7 @@
                     <div class="icon">
                         <i class="ion ion-clock"></i>
                     </div>
-                    <a href="/students/attendance" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/sattendance" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
                 <div class="small-box bg-blue">
                     <div class="inner">
@@ -92,7 +92,7 @@
                     <div class="icon">
                         <i class="ion ion-clock"></i>
                     </div>
-                    <a href="/teachers/attendance" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/tattendance" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -107,7 +107,7 @@
                     <div class="icon">
                         <i class="ion ion-alert-circled"></i>
                     </div>
-                    <a href="/students/latetime" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/sattendance" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
                 <div class="small-box bg-maroon">
                     <div class="inner">
@@ -118,7 +118,7 @@
                     <div class="icon">
                         <i class="ion ion-alert-circled"></i>
                     </div>
-                    <a href="/teachers/latetime" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/tattendance" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>

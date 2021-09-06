@@ -43,6 +43,12 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
+Route::group(['middleware' => ['auth']], function () {
+    
+    Route::resource('/schedule', 'ScheduleController');
+
+});
+
 Route::get('/sattendance/assign', function () {
     return view('includes.add_student_attendance');
 })->name('sattendance.login');

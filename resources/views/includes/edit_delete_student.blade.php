@@ -8,7 +8,7 @@
                 <h4 class="modal-title"><b><span class="employee_id">Edit Student</span></b></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('students.update',$student->name) }}">
+                <form class="form-horizontal" method="POST" action="{{ route('students.update',$student->id) }}">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">

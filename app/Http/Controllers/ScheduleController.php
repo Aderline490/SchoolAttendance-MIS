@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Schedule;
-use App\Http\Requests\ScheduleEmp;
+use App\Http\Requests\Schedule as Schedulee;
 
 class ScheduleController extends Controller
 {
@@ -24,11 +24,11 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Schedule $request)
+    public function store(Schedulee $request)
     {
         $request->validated();
 
-        $schedule = new schedule;
+        $schedule = new Schedule;
         $schedule->slug = $request->slug;
         $schedule->time_in = $request->time_in;
         $schedule->save();
@@ -55,10 +55,7 @@ class ScheduleController extends Controller
         $schedule->save();
 
         return redirect()->route('schedule.index')->with('success', 'Schedule Has Been Updated Successfully');
-
-
     }
-
     /**
      * Remove the specified resource from storage.
      *

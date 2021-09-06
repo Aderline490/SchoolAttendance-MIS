@@ -38,12 +38,13 @@ class StudentLeaveController extends Controller
                     $student_leave->leave_date = $request->leave_date;
                     $student_leave->return_date = $request->return_date;
                     $student_leave->save();
+                    return redirect()->route('sleave')->with('success', 'Successful in assigning the leave');
                 } else {
-                    return redirect()->back()->with('error', 'Your leave has been assigned!');
+                    return redirect()->back()->with('error', 'The leave has been assigned!');
                 }
-        }
+            }
+            return redirect()->route('sleave')->with('error', 'Student with such id doesn\'t exist');
 
-        return redirect()->route('sleave')->with('success', 'Successful in assigning the leave');
     }
 
 }

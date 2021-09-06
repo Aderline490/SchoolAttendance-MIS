@@ -8,7 +8,7 @@
                 <h4 class="modal-title"><b><span class="employee_id">Edit Teacher</span></b></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('teachers.update',$teacher->name) }}">
+                <form class="form-horizontal" method="POST" action="{{ route('teachers.update',$teacher->id) }}">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
@@ -75,14 +75,14 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><b><span class="employee_id">Delete teacher</span></b></h4>
+                <h4 class="modal-title"><b><span class="employee_id">Delete Teacher</span></b></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('teachers.destroy',$teacher->name) }}">
+                <form class="form-horizontal" method="POST" action="{{ route('teachers.destroy',$teacher->id) }}">
                     @csrf
                     {{ method_field('DELETE') }}
                     <div class="text-center">
-                        <p>DELETE teacher</p>
+                        <p>DELETE TEACHER</p>
                         <h2 class="bold del_employee_name"></h2>
                     </div>
             </div>

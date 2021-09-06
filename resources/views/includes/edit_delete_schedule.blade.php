@@ -1,5 +1,5 @@
 <!-- Edit -->
-<div class="modal fade" id="edit{{$schedule->slug}}">
+<div class="modal fade" id="editschedule">
     <div class=" modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -50,7 +50,7 @@
 </div>
 
 <!-- Delete -->
-<div class="modal fade" id="delete{{$schedule->slug}}">
+<div class="modal fade" id="deleteschedule">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

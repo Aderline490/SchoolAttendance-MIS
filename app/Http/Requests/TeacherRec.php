@@ -30,6 +30,7 @@ class TeacherRec extends FormRequest
             'dob' => 'required|date|min:4',
             'phone' => 'required|regex:/(07)[0-9]{8}/|unique:teachers,phone|min:10',
             'email' => 'required|email|unique:teachers,email|min:1',
+            'schedule' => 'required|exists:schedules,slug',
         ];
     }
 }

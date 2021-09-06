@@ -10,7 +10,6 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li>Employees</li>
             <li class="active">Schedules</li>
         </ol>
     </section>
@@ -29,7 +28,6 @@
                                 <th> Id </th>
                                 <th> Name </th>
                                 <th>Time In</th>
-                                <th>Time Out</th>
                                 <th>Tools</th>
                             </thead>
                             <tbody>
@@ -38,11 +36,10 @@
                                     <td> {{$schedule->id}} </td>
                                     <td> {{$schedule->slug}} </td>
                                     <td> {{$schedule->time_in}} </td>
-                                    <td> {{$schedule->time_out}} </td>
                                     <td>
 
-                                        <a href="#edit{{$schedule->slug}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
-                                        <a href="#delete{{$schedule->slug}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
+                                        <a href="#editschedule" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
+                                        <a href="#deleteschedule" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
 
                                     </td>
                                 </tr>

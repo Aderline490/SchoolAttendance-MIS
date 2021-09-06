@@ -27,6 +27,10 @@ class Student extends Authenticatable
     {
         return $this->hasMany(Leave::class);
     }
+    public function schedules()
+    {
+        return $this->belongsToMany('App\Schedule', 'schedule_students', 'student_id', 'schedule_id');
+    }
     /**
      * The attributes that are mass assignable.
      *

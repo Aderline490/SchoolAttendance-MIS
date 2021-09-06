@@ -30,9 +30,10 @@
                                 <th>Teacher ID</th>
                                 <th>Name</th>
                                 <th>Attendance</th>
+                                <th>Tools</th>
                             </thead>
                             <tbody>
-                                @foreach( $teacher_attendances as $attendance)
+                                @foreach( $teacher_attendances as $teacher_attendance)
 
                                 <tr>
                                     <td>{{$teacher_attendance->attendance_date}}</td>
@@ -40,10 +41,14 @@
                                     <td>{{$teacher_attendance->teacher->name}}</td>
                                     <td>{{$teacher_attendance->attendance_time}}
                                         @if( $teacher_attendance->status == 1 )
-                                        <span class="label label-warning pull-right">On Time</span>
-                                        @else
+                                        <span class="label label-success pull-right">On Time</span>
+                                        @elseif( $teacher_attendance->status == 0 )
                                         <span class="label label-danger pull-right">Late</span>
+                                        @else
+                                        <span class="label label-warning pull-right">Absent</span>
                                         @endif
+                                    </td>
+                                    <td>
                                 </tr>
 
                                 @endforeach

@@ -39,18 +39,20 @@
                             <tbody>
                                 @foreach( $teachers as $teacher)
 
+                                
                                 <tr>
-                                    <td>{{$teacher->id}}</td>
-                                    <td>{{$teacher->name}}</td>
-                                    <td>{{$teacher->address}}</td>
-                                    <td>{{$teacher->dob}}</td>
-                                    <td>{{$teacher->phone}}</td>
-                                    <td>{{$teacher->email}}</td>
+                                    <td><a href="/tattendance">{{$teacher->id}}</a></td>
+                                    <td><a href="/tattendance">{{$teacher->name}}</a></td>
+                                    <td><a href="/tattendance">{{$teacher->address}}</a></td>
+                                    <td><a href="/tattendance">{{$teacher->dob}}</a></td>
+                                    <td><a href="/tattendance">{{$teacher->phone}}</a></td>
+                                    <td><a href="/tattendance">{{$teacher->email}}</a></td>
                                     <td>
                                         <a href="#editteacher" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
                                         <a href="#deleteteacher" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
                                     </td>
                                 </tr>
+                                </a>
 
 
                                 @endforeach

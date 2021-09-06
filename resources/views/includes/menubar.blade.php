@@ -47,7 +47,7 @@
                     <li><a href="/tleave"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> <span>On Leave</span></a></li>
                 </ul>
             </li>
-
+             <li><a href="/schedule"><i class="fa fa-calendar"></i> <span>Schedule</span></a></li>
         </ul>
     </section>
     <!-- /.sidebar -->

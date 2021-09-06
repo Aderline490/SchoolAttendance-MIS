@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\Schedule;
 use App\Http\Requests\StudentRec;
 
 class StudentController extends Controller
@@ -14,7 +15,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('admin.student')->with(['students'=> Student::all()]);
+        return view('admin.student')->with(['students'=> Student::all(), 'schedules'=>Schedule::all()]);
     }
 
     /**

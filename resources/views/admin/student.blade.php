@@ -38,25 +38,23 @@
                                 <th>E-mail</th>
                                 <th>Tools</th>
                             </thead>
+                                
                             <tbody>
                                 @foreach( $students as $student)
-
-                                <tr>
-                                    <td>{{$student->id}}</td>
-                                    <td>{{$student->name}}</td>
-                                    <td>{{$student->class}}</td>
-                                    <td>{{$student->section}}</td>
-                                    <td>{{$student->address}}</td>
-                                    <td>{{$student->dob}}</td>
-                                    <td>{{$student->phone}}</td>
-                                    <td>{{$student->email}}</td>
-                                    <td>
-                                        <a href="#editstudent" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
-                                        <a href="#deletestudent" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
-                                    </td>
-                                </tr>
-
-
+                                    <tr>
+                                        <td><a href="/sattendance">{{$student->id}}</a></td>
+                                        <td><a href="/sattendance">{{$student->name}}</a></td>
+                                        <td><a href="/sattendance">{{$student->class}}</a></td>
+                                        <td><a href="/sattendance">{{$student->section}}</a></td>
+                                        <td><a href="/sattendance">{{$student->address}}</a></td>
+                                        <td><a href="/sattendance">{{$student->dob}}</a></td>
+                                        <td><a href="/sattendance">{{$student->phone}}</a></td>
+                                        <td><a href="/sattendance">{{$student->email}}</a></td>
+                                        <td>
+                                            <a href="#editstudent" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
+                                            <a href="#deletestudent" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

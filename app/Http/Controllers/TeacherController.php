@@ -24,7 +24,7 @@ class TeacherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TeacherRec $request)
+    public function store(TeacherRec $request, Teacher $teacher)
     {
         $request->validated();
 
@@ -36,12 +36,12 @@ class TeacherController extends Controller
         $teacher->phone = $request->phone;
         $teacher->email = $request->email;
         $teacher->save();
-
+        
         if($request->schedule){
 
             $schedule = Schedule::whereSlug($request->schedule)->first();
 
-            $employee->schedules()->attach($schedule);
+            $teacher->schedules()->attach($schedule);
         }
         return redirect()->route('teachers.index')->with('success', 'Teacher Has Been Created Successfully');
     }
@@ -65,13 +65,14 @@ class TeacherController extends Controller
         $teacher->email = $request->email;
         $teacher->save();
 
+
         if ($request->schedule) {
 
             $employee->schedules()->detach();
 
             $schedule = Schedule::whereSlug($request->schedule)->first();
 
-            $employee->schedules()->attach($schedule);
+            $teacher->schedules()->attach($schedule);
         }
         return redirect()->route('teachers.index')->with('success', 'Teacher Has Been Updated Successfully');
     }
