@@ -21,8 +21,6 @@ class CreateStudents extends Migration
             $table->string('section');
             $table->string('address');
             $table->date('dob');
-            $table->string('phone')->unique()->nullable();
-            $table->string('email')->unique()->nullable();
             $table->rememberToken();
         });
     }

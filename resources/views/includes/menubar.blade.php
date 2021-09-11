@@ -4,7 +4,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="/images/male6.jpg" class="img-circle" alt="User Image">
+                <img src="/images/male.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p> {{ Auth::user()->name }} </p>
@@ -47,7 +47,7 @@
                     <li><a href="/tleave"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> <span>On Leave</span></a></li>
                 </ul>
             </li>
-             <li><a href="/schedule"><i class="fa fa-calendar"></i> <span>Schedule</span></a></li>
+             <li><a href="/schedule"><i class="fa fa-calendar"></i> <span>Schedules</span></a></li>
         </ul>
     </section>
     <!-- /.sidebar -->

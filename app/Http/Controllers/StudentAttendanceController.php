@@ -55,7 +55,7 @@ class StudentAttendanceController extends Controller
                         return redirect()->back()->with('error', 'The attendance has been assigned!');
                     }
                 }
-        return redirect()->route('sattendance')->with('error', 'Student with such id doesn\'t exist');
+        return redirect()->route('sattendance')->with('error', 'Student doesn\'t exist');
     }
 
     /**

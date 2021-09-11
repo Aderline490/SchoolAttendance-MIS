@@ -38,8 +38,6 @@
                                     <td>{{$teacher_leave->leave_date}}</td>
                                     <td>{{$teacher_leave->teacher_id}}</td>
                                     <td>{{$teacher_leave->teacher->name}}</td>
-                                    <td>{{$teacher_leave->teacher->class}}</td>
-                                    <td>{{$teacher_leave->teacher->section}}</td>
                                     <td>{{$teacher_leave->leave_date}}</td>
                                     <td>{{$teacher_leave->return_date}}</td>
                                 </tr>

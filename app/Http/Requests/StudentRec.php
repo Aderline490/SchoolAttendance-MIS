@@ -30,8 +30,6 @@ class StudentRec extends FormRequest
             'section' => 'required|string|min:1',
             'address' => 'required|string|min:1',
             'dob' => 'required|date|min:4',
-            'phone' => 'regex:/(07)[0-9]{8}/|unique:students,phone|min:10',
-            'email' => 'email|unique:students,email|min:1',
             'schedule' => 'required|exists:schedules,slug',
         ];
     }

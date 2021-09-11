@@ -30,7 +30,6 @@
                                 <th>Teacher ID</th>
                                 <th>Name</th>
                                 <th>Attendance</th>
-                                <th>Tools</th>
                             </thead>
                             <tbody>
                                 @foreach( $teacher_attendances as $teacher_attendance)
@@ -48,7 +47,6 @@
                                         <span class="label label-warning pull-right">Absent</span>
                                         @endif
                                     </td>
-                                    <td>
                                 </tr>
 
                                 @endforeach

@@ -1,77 +1,165 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+    <!-- Tell the browser to be responsive to screen width -->
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'School Attendance System') }}</title>
+
+
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="/plugins/timepicker/bootstrap-timepicker.min.css">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+  	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  	<![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <style type="text/css">
+        .mt20 {
+            margin-top: 20px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        /* chart style*/
+        #legend ul {
+            list-style: none;
+        }
+
+        #legend ul li {
+            display: inline;
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 4px;
+            border-radius: 5px;
+            padding: 2px 8px 2px 28px;
+            font-size: 14px;
+            cursor: default;
+            -webkit-transition: background-color 200ms ease-in-out;
+            -moz-transition: background-color 200ms ease-in-out;
+            -o-transition: background-color 200ms ease-in-out;
+            transition: background-color 200ms ease-in-out;
+        }
+
+        #legend li span {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 100%;
+            border-radius: 5px;
+        }
+    </style>
+
+    @yield('style')
+
+</head>
+
+
+<body class="hold-transition login-page">
+    <div class="login-box">
+
+            <div class="login-logo">
+                <b>School Attendance System</b>
+            </div>
+
+            <div class="login-box-body">
+                <p class="login-box-msg">SIGNUP</p>
+
+        @include('includes.messages')
+            <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
+                        <div class="form-group has-feedback">
+                            <input type="text" id="name" class="form-control"@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="input Your Name" autocomplete="name" required autofocus>
+                            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="email" id="email "class="form-control" @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="input Your E-mail" autocomplete="email" required autofocus>
+                            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                            @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
+                        <div class="form-group has-feedback">
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}"  placeholder="input Your Password" required autocomplete="new-password">
+                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                            @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
-                            </div>
+                            @enderror
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
+                        <div class="form-group has-feedback">
+                            <input id="password-confirm" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" value="{{ old('password') }}"  placeholder="Confirm Password" required autocomplete="new-password">
+                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                            @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                            @enderror
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xs-4"></div>
+                            <div class="col-xs-4">
+                                <button type="submit" class="btn btn-primary btn-block btn-flat" name="register"><i class="fa fa-sign-in"></i> Sign Up</button>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
+                        <div class="row">
+                        <div class="col-xs-3"></div>
+                            Already have an account?<a href="/login"> Login</a>
                         </div>
                     </form>
                 </div>
-            </div>
+
+
+
         </div>
-    </div>
-</div>
-@endsection
+
+        @include('includes.scripts')
+
+
+</body>
+
+</html>

@@ -8,7 +8,7 @@
                 <h4 class="modal-title"><b><span class="employee_id">Edit Student</span></b></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('students.update',$student->id) }}">
+                <form class="form-horizontal" method="POST" action="{{ route('students.update',$student->name) }}">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
@@ -24,8 +24,10 @@
                             <select class="form-control" name="gender" required>
                                 @if($student->gender === 'female')
                                 <option value="female" selected>Female</option>
+                                <option value="female">Male</option>
                                 @else
-                                <option value="male">Male</option>
+                                <option value="male" selected>Male</option>
+                                <option value="male">Female</option>
                                 @endif
                             </select>
                         </div>
@@ -58,18 +60,17 @@
                             <input type="date" class="form-control" name="dob" value="{{$student->dob}}" required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="phone" class="col-sm-3 control-label">Phone</label>
+                     <div class="form-group">
+                        <label for="schedule" class="col-sm-3 control-label">Schedule</label>
 
                         <div class="col-sm-9">
-                            <input type="tel" class="form-control" name="phone" value="{{$student->phone}}" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="col-sm-3 control-label">E-Mail</label>
+                            <select class="form-control" id="schedule" name="schedule" required>
+                                <option value="{{$student->schedules->first()}}" selected></option>
+                                @foreach($schedules as $schedule)
+                                <option value="{{$schedule->slug}}">{{$schedule->slug}} : {{$schedule->time_in}}</option>
+                                @endforeach
 
-                        <div class="col-sm-9">
-                            <input type="email" class="form-control" name="email" value="{{$student->email}}" required>
+                            </select>
                         </div>
                     </div>
             </div>

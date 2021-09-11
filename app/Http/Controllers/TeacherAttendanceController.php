@@ -34,7 +34,8 @@ class TeacherAttendanceController extends Controller
     {
         $request->validated();
 
-        if ($teacher = Teacher::whereId(request('id'))->first()){
+        if ($teacher = Teacher::whereId(request('id'))->first() ){
+            if($teacher = Teacher::whereEmail(request('email'))->first()){
 
                     if (!TeacherAttendance::whereAttendance_date(date("Y-m-d"))->whereTeacher_id($teacher->id)->first()){
                         $teacher_attendance = new TeacherAttendance;
@@ -44,13 +45,13 @@ class TeacherAttendanceController extends Controller
 
                         $schedules = Schedule::all();
                         if (!($teacher->schedules->first()->time_in >= $teacher_attendance->attendance_time)){
-                            $attendance->status = 0;
+                            $teacher_attendance->status = 0;
                         TeacherAttendanceController::lateTime($teacher);
                         }elseif($teacher->schedules->first()->time_in >= $teacher_attendance->attendance_time){
                             $teacher_attendance->status = 1;
                         }else{
                             $teacher_attendance->status = 2;
-                        };;
+                        };
                         $teacher_attendance->save();
 
                     return redirect()->route('tattendance')->with('success', 'Successful in assigning the attendance');
@@ -58,7 +59,8 @@ class TeacherAttendanceController extends Controller
                         return redirect()->back()->with('error', 'The attendance has been assigned! ');
                     }
         }
-        return redirect()->route('tattendance')->with('error', 'Teacher with such id doesn\'t exist');
+    }
+            return redirect()->route('tattendance')->with('error', 'Teacher doesn\'t exist');
     }
 
     /**
@@ -68,9 +70,8 @@ class TeacherAttendanceController extends Controller
      */
     public static function lateTime(Teacher $teacher)
     {
-        $schedules = Schedules::all();
         $current_t= new DateTime(date("H:i:s"));
-        $start_t= new DateTime($schedules->first()->time_in);
+        $start_t= new DateTime($teacher->schedules->first()->time_in);
         $difference = $start_t->diff($current_t)->format('%H:%I:%S');
 
 

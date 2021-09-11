@@ -11,7 +11,7 @@ use App\Http\Requests\AttendanceEmp;
 use Illuminate\Http\Request;
 
 
-class StudentApiController extends Controller
+class ApiController extends Controller
 {
     /**
      * assign checks for attendance and leave for the employee.

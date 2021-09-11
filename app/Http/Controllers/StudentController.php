@@ -36,15 +36,13 @@ class StudentController extends Controller
         $student->section = $request->section;
         $student->address = $request->address;
         $student->dob = $request->dob;
-        $student->phone = $request->phone;
-        $student->email = $request->email;
         $student->save();
         
         if($request->schedule){
 
             $schedule = Schedule::whereSlug($request->schedule)->first();
 
-            $employee->schedules()->attach($schedule);
+            $student->schedules()->attach($schedule);
         }
         return redirect()->route('students.index')->with('success', 'Student Has Been Registered Successfully');
     }
@@ -53,7 +51,7 @@ class StudentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param   \App\User  $employee
+     * @param   \App\User  $student
      * @return \Illuminate\Http\Response
      */
     public function update(StudentRec $request, Student $student)
@@ -66,17 +64,15 @@ class StudentController extends Controller
         $student->section = $request->section;
         $student->address = $request->address;
         $student->dob = $request->dob;
-        $student->phone = $request->phone;
-        $student->email = $request->email;
         $student->save();
         
         if ($request->schedule) {
 
-            $employee->schedules()->detach();
+            $student->schedules()->detach();
 
             $schedule = Schedule::whereSlug($request->schedule)->first();
 
-            $employee->schedules()->attach($schedule);
+            $student->schedules()->attach($schedule);
         }
         
         return redirect()->route('students.index')->with('success', 'Student Has Been Updated Successfully');
@@ -85,7 +81,7 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param   \App\User  $employee
+     * @param   \App\User  $student
      * @return \Illuminate\Http\Response
      */
     public function destroy(Student $student)

@@ -34,8 +34,6 @@
                                 <th>Section</th>
                                 <th>Address</th>
                                 <th>Date of Birth</th>
-                                <th>Phone</th>
-                                <th>E-mail</th>
                                 <th>Tools</th>
                             </thead>
                                 
@@ -48,8 +46,6 @@
                                         <td><a href="/sattendance">{{$student->section}}</a></td>
                                         <td><a href="/sattendance">{{$student->address}}</a></td>
                                         <td><a href="/sattendance">{{$student->dob}}</a></td>
-                                        <td><a href="/sattendance">{{$student->phone}}</a></td>
-                                        <td><a href="/sattendance">{{$student->email}}</a></td>
                                         <td>
                                             <a href="#editstudent" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
                                             <a href="#deletestudent" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>

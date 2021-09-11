@@ -128,16 +128,9 @@
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Monthly Attendance Report</h3>
-                        <div class="box-tools pull-right">
-
-                        </div>
                     </div>
                     <div class="box-body">
-                        <div class="chart">
-                            <br>
-                            <div id="legend" class="text-center"></div>
-                            <canvas id="barChart" style="height:350px"></canvas>
-                        </div>
+                    <canvas id="myChart" width="400" height="400"> </canvas>
                     </div>
                 </div>
             </div>
@@ -145,5 +138,9 @@
 
     </section>
     <!-- right col -->
+
 </div>
+
+@include('includes.index_scripts', ['students' => $data[0], 'teachers' => $data[1], 'student_leave' => $data[8], 'teacher_leave' => $data[9]])
+
 @endsection

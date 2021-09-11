@@ -8,7 +8,7 @@
                 <h4 class="modal-title"><b>Add Teacher Leave</b></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('sleave.assign') }}">
+                <form class="form-horizontal" method="POST" action="{{ route('tleave.assign') }}">
                     @csrf
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Name</label>

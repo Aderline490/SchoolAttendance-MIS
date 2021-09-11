@@ -43,7 +43,7 @@ class TeacherLeaveController extends Controller
                 return redirect()->back()->with('error', 'The leave has been assigned!');
             }
         }
-        return redirect()->route('tleave')->with('error', 'Teacher with such id doesn\'t exist');
+        return redirect()->route('tleave')->with('error', 'Teacher doesn\'t exist');
     }
 
 }

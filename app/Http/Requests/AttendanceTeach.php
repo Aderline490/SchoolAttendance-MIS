@@ -26,6 +26,7 @@ class AttendanceTeach extends FormRequest
         return [
             'name' => 'required|string|max:255|exists:teachers',
             'id' => 'required|numeric|min:1',
+            'email' => 'required|email|exists:teachers',
         ];
     }
 }

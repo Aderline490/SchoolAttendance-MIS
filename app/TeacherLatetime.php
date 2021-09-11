@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StudentLatetime extends Model
+class TeacherLatetime extends Model
 {
     public $timestamps = false;
     public function teacher()

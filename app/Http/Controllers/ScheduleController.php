@@ -44,7 +44,7 @@ class ScheduleController extends Controller
      * @param   \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Schedule $request, Schedule $schedule)
+    public function update(Schedulee $request, Schedule $schedule)
     {
         $request['time_in'] = str_split($request->time_in, 5)[0];
 

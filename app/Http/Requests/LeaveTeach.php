@@ -24,8 +24,10 @@ class LeaveTeach extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255|exists:students',
+            'name' => 'required|string|max:255|exists:teachers',
             'id' => 'required|numeric|min:1',
+            'return_date' => 'required|date',
+            'leave_date' => 'required|date',
         ];
     }
 }

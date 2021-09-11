@@ -8,7 +8,7 @@
                 <h4 class="modal-title"><b><span class="employee_id">Edit Teacher</span></b></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('teachers.update',$teacher->id) }}">
+                <form class="form-horizontal" method="POST" action="{{ route('teachers.update',$teacher->name) }}">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
@@ -24,8 +24,10 @@
                             <select class="form-control" name="gender" required>
                                 @if($teacher->gender === 'female')
                                 <option value="female" selected>Female</option>
+                                <option value="female">Male</option>
                                 @else
-                                <option value="male">Male</option>
+                                <option value="male"  selected>Male</option>
+                                <option value="male">Female</option>
                                 @endif
                             </select>
                         </div>
@@ -58,6 +60,19 @@
                             <input type="email" class="form-control" name="email" value="{{$teacher->email}}" required>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="schedule" class="col-sm-3 control-label">Schedule</label>
+
+                        <div class="col-sm-9">
+                            <select class="form-control" id="schedule" name="schedule" required>
+                                <option value="{{$teacher->schedules->first()}}" selected></option>
+                                @foreach($schedules as $schedule)
+                                <option value="{{$schedule->slug}}">{{$schedule->slug}} : {{$schedule->time_in}}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                    </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
@@ -75,15 +90,15 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><b><span class="employee_id">Delete Teacher</span></b></h4>
+                <h4 class="modal-title"><b><span class="id">Delete Teacher</span></b></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('teachers.destroy',$teacher->id) }}">
+                <form class="form-horizontal" method="POST" action="{{ route('teachers.destroy',$teacher->name) }}">
                     @csrf
                     {{ method_field('DELETE') }}
                     <div class="text-center">
                         <p>DELETE TEACHER</p>
-                        <h2 class="bold del_employee_name"></h2>
+                        <h2 class="bold del_teacher_name"></h2>
                     </div>
             </div>
             <div class="modal-footer">

@@ -116,7 +116,7 @@
 
         @include('includes.messages')
 
-                    <form class="form-horizontal" method="POST" action="{{ route('leave.assign') }}">
+                    <form class="form-horizontal" method="POST" action="#">
 
         @endif
 

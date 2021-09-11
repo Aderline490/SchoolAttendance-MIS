@@ -26,6 +26,8 @@ class LeaveStud extends FormRequest
         return [
             'name' => 'required|string|max:255|exists:students',
             'id' => 'required|numeric|min:1',
+            'return_date' => 'required|date',
+            'leave_date' => 'required|date',
         ];
     }
 }
