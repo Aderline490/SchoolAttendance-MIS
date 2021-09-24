@@ -105,20 +105,10 @@
                         <div class="form-group has-feedback">
                             <input type="email" id="email "class="form-control" name="email" @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="input Your E-mail" autocomplete="email" required autofocus>
                             <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                            @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                         </div>
                         <div class="form-group has-feedback">
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}"  placeholder="input Your Password" required autocomplete="current-password">
                             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                            @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
                             @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}

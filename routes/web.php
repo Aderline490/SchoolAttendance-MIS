@@ -16,7 +16,6 @@ Route::get('/', function () {
 });
 
 Route::post('login', 'Auth\LoginController@postLogin')->name('login');
-Route::get('dashboard', 'AdminController@index')->name('admin');
 
 Auth::routes();
 
@@ -30,9 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-Route::get('/demo', function () {
-    return view('attendance_leave_login');
-})->name('leave.login');
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('/teachers', 'TeacherController');
@@ -41,18 +38,23 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/tattendance/assign', 'TeacherAttendanceController@assign')->name('tattendance.assign');
     Route::get('/tleave', 'TeacherLeaveController@index')->name('tleave');
     Route::post('/tleave/assign', 'TeacherLeaveController@assign')->name('tleave.assign');
-
+    
 });
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('/students', 'StudentController', ['only' => [
         'show', 'index',
-    ]]);
-
-});
-
+        ]]);
+    });
+    
 Route::group(['middleware' => ['auth']], function () {
     
     Route::resource('/schedule', 'ScheduleController');
 
+});
+Route::group(['middleware' => ['auth']], function () {
+    
+    Route::post('/updateProfile', 'AdminController@update')->name('admin.update');
+    
+    Route::get('dashboard', 'AdminController@index')->name('admin');
 });

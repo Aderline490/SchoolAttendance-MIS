@@ -24,6 +24,7 @@ class StudentRec extends FormRequest
     public function rules()
     {
         return [
+            'id' => 'required|integer|min:1',
             'name' => 'required|string|min:3|max:64',
             'gender' => 'required|string|min:4|max:6',
             'class' => 'required|integer|min:1',

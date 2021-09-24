@@ -12,6 +12,17 @@
                 <form class="form-horizontal" method="POST" action="{{ route('students.store') }}">
                     @csrf
                     <div class="form-group">
+                        <label for="id" class="col-sm-3 control-label">Student ID</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control @error('id') is-invalid @enderror" value="{{ old('id') }}" id="id" name="id" required >
+                            @error('id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Name</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" id="name" name="name" required >
@@ -76,29 +87,6 @@
                             <input type="date" class="form-control @error('dob') is-invalid @enderror" value="{{ old('dob') }}" id="dob" name="dob" required>
                             @error('dob')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone" class="col-sm-3 control-label">Phone</label>
-                        <div class="col-sm-9">
-                            <input type="tel" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" id="phone" name="phone">
-                            @error('phone')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="col-sm-3 control-label">E-Mail</label>
-
-                        <div class="col-sm-9">
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="email" name="email">
-                            @error('email')
-                                        <span class="invalid-feedback red-text" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                             @enderror

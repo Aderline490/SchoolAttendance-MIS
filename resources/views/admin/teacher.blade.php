@@ -48,8 +48,8 @@
                                     <td><a href="/tattendance">{{$teacher->phone}}</a></td>
                                     <td><a href="/tattendance">{{$teacher->email}}</a></td>
                                     <td>
-                                        <a href="#editteacher" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
-                                        <a href="#deleteteacher" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
+                                        <a href="#edit{{$teacher->name}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
+                                        <a href="#delete{{$teacher->name}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
                                     </td>
                                 </tr>
                                 </a>

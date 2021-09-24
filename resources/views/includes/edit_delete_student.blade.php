@@ -1,5 +1,5 @@
 <!-- Edit -->
-<div class="modal fade" id="editstudent">
+<div class="modal fade" id="edit{{$student->name}}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,6 +11,12 @@
                 <form class="form-horizontal" method="POST" action="{{ route('students.update',$student->name) }}">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Student ID</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" name="id" value="{{$student->student_id}}" required>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Name</label>
 
@@ -64,7 +70,7 @@
                         <label for="schedule" class="col-sm-3 control-label">Schedule</label>
 
                         <div class="col-sm-9">
-                            <select class="form-control" id="schedule" name="schedule" required>
+                            <select class="form-control" name="schedule" required>
                                 <option value="{{$student->schedules->first()}}" selected></option>
                                 @foreach($schedules as $schedule)
                                 <option value="{{$schedule->slug}}">{{$schedule->slug}} : {{$schedule->time_in}}</option>
@@ -84,16 +90,16 @@
 </div>
 
 <!-- Delete -->
-<div class="modal fade" id="deletestudent">
+<div class="modal fade" id="delete{{$student->name}}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><b><span class="employee_id">Delete Student</span></b></h4>
+                <h4 class="modal-title"><b><span class="student_id">Delete Student</span></b></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('students.destroy',$student->name) }}">
+                <form class="form-horizontal"  action="{{ route("students.destroy", $student->id) }}" method="POST">
                     @csrf
                     {{ method_field('DELETE') }}
                     <div class="text-center">

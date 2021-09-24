@@ -141,6 +141,6 @@
 
 </div>
 
-@include('includes.index_scripts', ['students' => $data[0], 'teachers' => $data[1], 'student_leave' => $data[8], 'teacher_leave' => $data[9]])
+@include('includes.index_scripts')
 
 @endsection

@@ -1,5 +1,5 @@
 <!-- Edit -->
-<div class="modal fade" id="editteacher">
+<div class="modal fade" id="edit{{$teacher->name}}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,7 +8,7 @@
                 <h4 class="modal-title"><b><span class="employee_id">Edit Teacher</span></b></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('teachers.update',$teacher->name) }}">
+                <form class="form-horizontal" method="POST" action="{{ url("/teachers/$teacher->id") }}">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
@@ -84,7 +84,7 @@
 </div>
 
 <!-- Delete -->
-<div class="modal fade" id="deleteteacher">
+<div class="modal fade" id="delete{{$teacher->name}}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -93,7 +93,7 @@
                 <h4 class="modal-title"><b><span class="id">Delete Teacher</span></b></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('teachers.destroy',$teacher->name) }}">
+                <form class="form-horizontal" method="POST" action="{{ url("/teachers/$teacher->id") }}">
                     @csrf
                     {{ method_field('DELETE') }}
                     <div class="text-center">

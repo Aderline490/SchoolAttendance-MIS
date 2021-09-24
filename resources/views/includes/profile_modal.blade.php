@@ -8,7 +8,8 @@
                 <h4 class="modal-title"><b>School Profile Update</b></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="profile_update.php?return=<?php echo basename($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
+                <form class="form-horizontal" method="POST" action="{{ url('/updateProfile')}}" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group">
                         <label for="username" class="col-sm-3 control-label">Name</label>
 
@@ -17,18 +18,25 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="col-sm-3 control-label">New Password</label>
+                        <label for="email" class="col-sm-3 control-label">E-Mail</label>
 
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" id="password" name="password"
-                            placeholder="input Your New password">
+                            <input type="email" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="curr_password" class="col-sm-3 control-label">Current Password:</label>
 
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" id="curr_password" name="curr_password" placeholder="input current password to save changes" required>
+                            <input type="password" class="form-control" id="curr_password" name="curr_password" placeholder="input current password" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-3 control-label">New Password</label>
+
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="password" name="password"
+                            placeholder="input Your New password">
                         </div>
                     </div>
             </div>

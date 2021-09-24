@@ -28,8 +28,10 @@ class TeacherRec extends FormRequest
             'gender' => 'required|string|min:4|max:6',
             'address' => 'required|string|min:1',
             'dob' => 'required|date|min:4',
-            'phone' => 'required|regex:/(07)[0-9]{8}/|unique:teachers,phone|min:10',
-            'email' => 'required|email|unique:teachers,email|min:1',
+            // 'phone' => 'required|regex:/(07)[0-9]{8}/|unique:teachers,phone|min:10',
+            // 'email' => 'required|email|unique:teachers,email|min:1',
+            'phone' => 'required|regex:/(07)[0-9]{8}/|min:10',
+            'email' => 'required|email|min:1',
             'schedule' => 'required|exists:schedules,slug',
         ];
     }

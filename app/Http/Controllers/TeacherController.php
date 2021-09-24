@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Teacher;
 use App\Schedule;
 use App\Http\Requests\TeacherRec;
+use Illuminate\Support\Facades\DB;
 
 class TeacherController extends Controller
 {
@@ -53,9 +54,11 @@ class TeacherController extends Controller
      * @param   \App\User  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function update(TeacherRec $request, Teacher $teacher)
+    public function update(TeacherRec $request, $id)
     {
         $request->validated();
+        
+        $teacher = Teacher::find($id);
 
         $teacher->name = $request->name;
         $teacher->gender = $request->gender;    
@@ -63,7 +66,7 @@ class TeacherController extends Controller
         $teacher->dob = $request->dob;
         $teacher->phone = $request->phone;
         $teacher->email = $request->email;
-        $teacher->save();
+        $teacher->update();
 
 
         if ($request->schedule) {
@@ -83,9 +86,11 @@ class TeacherController extends Controller
      * @param   \App\User  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teacher $teacher)
+    public function destroy($id)
     {
-        $teacher->delete();
+        // $teacher->delete();
+        DB::delete('DELETE FROM teachers where id = ?',[$id]);
+
         return redirect()->route('teachers.index')->with('success', 'Teacher Has Been Deleted Successfully');
     }
 }

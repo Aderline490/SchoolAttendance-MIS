@@ -28,12 +28,12 @@
                     <div class="box-body">
                         <table id="example1" class="table table-bordered">
                             <thead>
+                                <th>&numero;</th>
                                 <th>Student ID</th>
                                 <th>Name</th>
                                 <th>Class</th>
                                 <th>Section</th>
                                 <th>Address</th>
-                                <th>Date of Birth</th>
                                 <th>Tools</th>
                             </thead>
                                 
@@ -41,14 +41,14 @@
                                 @foreach( $students as $student)
                                     <tr>
                                         <td><a href="/sattendance">{{$student->id}}</a></td>
+                                        <td><a href="/sattendance">{{$student->student_id}}</a></td>
                                         <td><a href="/sattendance">{{$student->name}}</a></td>
                                         <td><a href="/sattendance">{{$student->class}}</a></td>
                                         <td><a href="/sattendance">{{$student->section}}</a></td>
                                         <td><a href="/sattendance">{{$student->address}}</a></td>
-                                        <td><a href="/sattendance">{{$student->dob}}</a></td>
                                         <td>
-                                            <a href="#editstudent" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
-                                            <a href="#deletestudent" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
+                                            <a href="#edit{{$student->name}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
+                                            <a href="#delete{{$student->name}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

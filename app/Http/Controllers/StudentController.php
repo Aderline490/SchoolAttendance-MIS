@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Student;
 use App\Schedule;
 use App\Http\Requests\StudentRec;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -30,6 +31,7 @@ class StudentController extends Controller
         $request->validated();
 
         $student = new Student;
+        $student->student_id = $request->id;
         $student->name = $request->name;
         $student->gender = $request->gender;
         $student->class = $request->class;
@@ -58,13 +60,14 @@ class StudentController extends Controller
     {
         $request->validated();
 
+        $student->student_id = $request->id;
         $student->name = $request->name;
         $student->gender = $request->gender;
         $student->class = $request->class;
         $student->section = $request->section;
         $student->address = $request->address;
         $student->dob = $request->dob;
-        $student->save();
+        $student->update();
         
         if ($request->schedule) {
 
@@ -84,9 +87,20 @@ class StudentController extends Controller
      * @param   \App\User  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy($id)
     {
-        $student->delete();
+        // $student->delete();
+        // DB::statement("DELETE from students where id  = $request->id");
+        DB::table('students')->where('id', '=', $id)->delete();
+    
         return redirect()->route('students.index')->with('success', 'Student Has Been Deleted Successfully');
     }
+
+    // public function destroy($id)
+    // {
+
+    //     DB::delete('DELETE FROM students where id = ?',[$id]);
+        
+    //     return redirect('/students')->with('success', 'Student Has Been Deleted Successfully');
+    // }
 }

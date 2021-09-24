@@ -7,7 +7,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: ['Total Teachers', 'Total Students', 'Students on leave', 'Teachers on Leave'],
         datasets: [{
-            data: [1,1,1,1],
+            data: [{{$data[1]}},{{$data[0]}},{{$data[8]}},{{$data[9]}}],
             //data: [$teachers, $students, $student_leave, $teacher_leave],
            //data: [$dataa['teachers'], $data['students'], $data['student_leave'], $data['teacher_leave']],
             backgroundColor: [
