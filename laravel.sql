@@ -263,6 +263,7 @@ CREATE TABLE `schedule_students` (
 
 LOCK TABLES `schedule_students` WRITE;
 /*!40000 ALTER TABLE `schedule_students` DISABLE KEYS */;
+INSERT INTO `schedule_students` VALUES (8,6),(9,6);
 /*!40000 ALTER TABLE `schedule_students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -343,7 +344,6 @@ CREATE TABLE `student_attendances` (
 
 LOCK TABLES `student_attendances` WRITE;
 /*!40000 ALTER TABLE `student_attendances` DISABLE KEYS */;
-INSERT INTO `student_attendances` VALUES (1,1,'10:19:22','2021-09-04',0),(2,2,'11:25:31','2021-09-05',0),(3,3,'11:40:44','2021-09-05',0),(4,4,'11:46:32','2021-09-05',0),(5,5,'12:18:30','2021-09-05',0),(6,6,'12:20:49','2021-09-05',1);
 /*!40000 ALTER TABLE `student_attendances` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,7 +371,6 @@ CREATE TABLE `student_latetimes` (
 
 LOCK TABLES `student_latetimes` WRITE;
 /*!40000 ALTER TABLE `student_latetimes` DISABLE KEYS */;
-INSERT INTO `student_latetimes` VALUES (1,1,'00:00:00','2021-09-04'),(2,2,'02:25:17','2021-09-05'),(3,2,'02:25:31','2021-09-05'),(4,3,'02:40:44','2021-09-05'),(5,4,'02:46:32','2021-09-05'),(6,5,'09:18:30','2021-09-05');
 /*!40000 ALTER TABLE `student_latetimes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -399,7 +398,6 @@ CREATE TABLE `student_leaves` (
 
 LOCK TABLES `student_leaves` WRITE;
 /*!40000 ALTER TABLE `student_leaves` DISABLE KEYS */;
-INSERT INTO `student_leaves` VALUES (1,2,'2021-09-22','2021-09-24');
 /*!40000 ALTER TABLE `student_leaves` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -412,6 +410,7 @@ DROP TABLE IF EXISTS `students`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `students` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `student_id` bigint(20) NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gender` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `class` int(11) NOT NULL,
@@ -424,7 +423,7 @@ CREATE TABLE `students` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `students_phone_unique` (`phone`),
   UNIQUE KEY `students_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -433,7 +432,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'Adeline Gashugi','female',3,'C','Kimironko-Bibare','2021-09-18','0788695515','aderlinecarmella@gmail.com',NULL),(2,'naillah','female',4,'MPC','Bumbogo','2021-09-17','0780123501','mugishaelviso@yahoo.com',NULL),(3,'Uganda','male',5,'PCB','Remera','2021-09-22','0780498807','lili@gmail.com',NULL),(4,'Aderline Shughs','female',3,'C','Kigali','2021-09-23','0734567829','ad@gmail.com',NULL),(5,'Kweti','male',6,'ICT','Musanze','2021-09-23','0712345678','baselrabia2008@gmail.com',NULL),(6,'Elvi','male',6,'Net','Kimironko-Bibare','2021-09-24','0780123511','ah@gmail.com',NULL);
+INSERT INTO `students` VALUES (8,575776,'Adeline Gashugi','female',6,'MPC','Kimironko-Bibare','2021-09-24',NULL,NULL,NULL),(9,687686,'naillah','female',7,'C','Bumbogo','2021-09-16',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -465,6 +464,32 @@ CREATE TABLE `teacher_attendances` (
 LOCK TABLES `teacher_attendances` WRITE;
 /*!40000 ALTER TABLE `teacher_attendances` DISABLE KEYS */;
 /*!40000 ALTER TABLE `teacher_attendances` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `teacher_latetimes`
+--
+
+DROP TABLE IF EXISTS `teacher_latetimes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `teacher_latetimes` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `teacher_id` int(10) unsigned NOT NULL,
+  `duration` time NOT NULL,
+  `latetime_date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `teacher_latetimes`
+--
+
+LOCK TABLES `teacher_latetimes` WRITE;
+/*!40000 ALTER TABLE `teacher_latetimes` DISABLE KEYS */;
+INSERT INTO `teacher_latetimes` VALUES (1,6,'04:09:32','2021-09-08');
+/*!40000 ALTER TABLE `teacher_latetimes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -567,4 +592,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-05 16:06:19
+-- Dump completed on 2021-10-02 11:28:47
